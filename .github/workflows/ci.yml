@@ -1,0 +1,15 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12", cache: pip}
+      - run: pip install -r requirements.txt
+      - run: pytest -v
+      - name: Run the reporting cycle
+        run: python -m esg.run
+      - uses: actions/upload-artifact@v4
+        with: {name: esg-outputs, path: out/}

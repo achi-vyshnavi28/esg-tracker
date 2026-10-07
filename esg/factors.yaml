@@ -1,0 +1,41 @@
+# Emission factors used for the GHG inventory (GHG Protocol Corporate Standard, operational control boundary).
+# Every factor carries its source so the calculation can be audited.
+
+scope1:
+  diesel:          # DG sets at stores and warehouses
+    value: 2.651
+    unit: kg CO2 per litre
+    source: "IPCC 2006 Guidelines Vol 2 defaults: NCV 43.0 TJ/Gg, 74,100 kg CO2/TJ, density 0.832 kg/L"
+  lpg:             # canteens at corporate offices
+    value: 2.985
+    unit: kg CO2 per kg
+    source: "IPCC 2006 Guidelines Vol 2 defaults: NCV 47.3 TJ/Gg, 63,100 kg CO2/TJ"
+  r410a:           # refrigerant top ups for air conditioning (fugitive emissions)
+    value: 1924
+    unit: kg CO2e per kg (GWP100)
+    source: "IPCC AR5 GWP100: R-410A = 50% R-32 (677) + 50% R-125 (3,170)"
+
+scope2:
+  grid_electricity:  # location based method
+    value: 0.727
+    unit: kg CO2 per kWh
+    source: "CEA CO2 Baseline Database Version 20.0, FY 2023-24 weighted average grid emission factor"
+  rooftop_solar:
+    value: 0.0
+    unit: kg CO2 per kWh
+    source: "On site renewable generation, zero operational emissions"
+
+scope3:
+  freight:           # category 4, upstream transportation and distribution (warehouse to store trucks)
+    value: 0.07547
+    unit: kg CO2e per tonne km
+    source: "DEFRA 2024 conversion factors, road freight, articulated HGV, diesel, average laden"
+  air_travel:        # category 6, business travel, domestic flights
+    value: 0.27257
+    unit: kg CO2e per passenger km
+    source: "DEFRA 2024 conversion factors, domestic flight, average passenger, with radiative forcing"
+
+energy:
+  diesel_mj_per_litre: 35.78   # 0.832 kg/L x 43.0 MJ/kg
+  lpg_mj_per_kg: 47.3
+  kwh_to_mj: 3.6
